@@ -58,7 +58,7 @@ module.exports = function(grunt) {
                     files: [
                         {
                             expand: true,
-                            cwd: 'js/',
+                            cwd: 'targets/js/',
                             src: ['<%= concat.dev.dest %>'],
                             dest: 'www/js/',
                             ext: '.js'
@@ -69,11 +69,11 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['js/**.js', 'phone/js/**.js', 'desktop/js/**.js', 'tablet/js/**.js'], 
+                src: ['modules/**/*.js','js/**.js', 'targets/phone/js/**.js', 'targets/desktop/js/**.js', 'targets/tablet/js/**.js'], 
                 dest: 'js/app.js'
             },
             dev: {
-                src: ['js/**.js', 'phone/js/**.js', 'desktop/js/**.js', 'tablet/js/**.js'], 
+                src: ['modules/**/*.js','js/**.js', 'targets/phone/js/**.js', 'targets/desktop/js/**.js', 'targets/tablet/js/**.js'], 
                 dest: 'js/app.js'
             }
         },
@@ -82,6 +82,10 @@ module.exports = function(grunt) {
             filter: function(filepath) {
                 return (grunt.file.isDir(filepath) || grunt.file.exists(filepath));
             }
+        },
+        jshint: {
+            file: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+               
         }
     });
 
